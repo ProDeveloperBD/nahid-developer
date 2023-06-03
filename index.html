@@ -432,23 +432,35 @@
                     </div>
                     
                     <div class="col-lg-8" data-aos="fade-up" data-aos-delay="300">
-                        <form action="#" class="row g-lg-3 gy-3">
+                        <form  method="post" name="google-sheet" class="row g-lg-3 gy-3">
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" placeholder="Enter your name">
+                                <input type="text" name="name" class="form-control" placeholder="Enter your name">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="email" class="form-control" placeholder="Enter your email">
+                                <input type="email" name="email" class="form-control" placeholder="Enter your email">
                             </div>
                             <div class="form-group col-12">
-                                <input type="text" class="form-control" placeholder="Enter subject">
+                                <input type="text" name="subject" class="form-control" placeholder="Enter subject">
                             </div>
                             <div class="form-group col-12">
-                                <textarea name="" rows="4" class="form-control" placeholder="Enter your message"></textarea>
+                                <textarea name="message" rows="4" class="form-control" placeholder="Enter your message"></textarea>
                             </div>
                             <div class="form-group col-12 d-grid">
-                                <button href="" type="submit" class="btn btn-brand">Contact me</button>
+                                <input class="btn btn-brand" type="submit" value="Contact me" placeholder="Contact me">
                             </div>
                         </form>
+                        <script type="text/javascript">
+                            const scriptURL = 'https://script.google.com/macros/s/AKfycbyp9eR9wBiw3YA32vqdGILFJBvXCATi8AXdjkncQp4x4GZ8fyav-FSbmgx-FcfdNt9q/exec'
+                            const form = document.forms['google-sheet']
+                            
+                            form.addEventListener('submit', e => {
+                                e.preventDefault()
+                                fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                                .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+                                .catch(error => console.error('Error!', error.message))
+                            })
+                        </script>
+                        
                     </div>
                 </div>
                 
